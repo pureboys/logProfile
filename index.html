@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+
+
+<script>
+    $(function () {
+        var lock = true;
+        if (lock) {
+            $.get("http://localhost:9090/dig", {
+                "time": gettime(),
+                "url": geturl(),
+                "refer": getrefer(),
+                "ua": getuser_agent()
+            }, function () {
+                lock = false;
+            })
+        }
+    });
+
+    function gettime() {
+        var nowDate = new Date();
+        return nowDate.toLocaleString();
+    }
+
+    function geturl() {
+        return window.location.href;
+    }
+
+    function getrefer() {
+        return document.referrer;
+    }
+
+    function getuser_agent() {
+        return navigator.userAgent;
+    }
+</script>
+</body>
+</html>
